@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.townscript.imdb.dao.JdbcTemplateFactory;
 import com.townscript.imdb.model.Movi;
 import com.townscript.imdb.model.MoviRowMapper;
 
@@ -21,12 +21,7 @@ public class MoviDaoImpl implements MoviDao {
 
 	@Override
 	public int addmovi(final Movi movi) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 		//int id = 0;
 		KeyHolder holder = new GeneratedKeyHolder();
      
@@ -50,12 +45,7 @@ public class MoviDaoImpl implements MoviDao {
 
 	@Override
 	public List<Movi> loadallmovi() {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 	
 		String sql = "SELECT * FROM MOVIE";
 		List<Movi> movies=		jdbc.query(sql, new MoviRowMapper());
@@ -63,12 +53,7 @@ public class MoviDaoImpl implements MoviDao {
 		return movies;
 		}
 	public Movi loadmovi(int moviId) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 	
 	     String sql = "SELECT * FROM MOVIE WHERE MOVIE_ID = ?";
 	     Movi movi = jdbc.queryForObject(
@@ -98,12 +83,7 @@ public class MoviDaoImpl implements MoviDao {
 
 	@Override
 	public void delmovi(int moviId) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 		String sql = "DELETE FROM MOVIE WHERE MOVIE_ID = "+moviId;
 		jdbc.update(sql);
 //	    Movi movi = jdbc.queryForObject(
@@ -114,12 +94,8 @@ public class MoviDaoImpl implements MoviDao {
 
 	@Override
 	public int editmovi(Movi movi) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 		int id = 0;
 		try {
 			

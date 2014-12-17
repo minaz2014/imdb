@@ -12,22 +12,16 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.townscript.imdb.dao.JdbcTemplateFactory;
 import com.townscript.imdb.model.Comment;
 import com.townscript.imdb.model.CommentsRowMapper;
-import com.townscript.imdb.model.Movi;
-import com.townscript.imdb.model.MoviRowMapper;
 
 public class CommentDaoImpl implements CommentDao {
 
 	@Override
 	public int addcomment(final Comment comment) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 		//int id = 0;
 		KeyHolder holder = new GeneratedKeyHolder();
 
@@ -53,12 +47,8 @@ public class CommentDaoImpl implements CommentDao {
 
 	@Override
 	public List<Comment> loadallcomment(int moviId) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+	
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 	
 		String sql = "SELECT * FROM COMMENTS WHERE MOVIE_ID = "+moviId;
 	     

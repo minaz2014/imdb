@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.townscript.imdb.dao.JdbcTemplateFactory;
 import com.townscript.imdb.model.User;
 import com.townscript.imdb.model.UserRowMapper;
 
@@ -20,12 +20,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int addUser(final User user) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 		
 		KeyHolder holder = new GeneratedKeyHolder();
 
@@ -51,12 +46,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public boolean checkUserExist(String emailId) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 	
 		String sql = "SELECT *FROM USER WHERE EMAIL_ID = ?";
 		User user;
@@ -76,12 +66,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User loadUser(String emailId) {
-		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setDatabaseName("imdb_db");
-		dataSource.setUser("root");
-		dataSource.setPassword("boxmarker");
-		dataSource.setServerName("localhost");
-		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		JdbcTemplate jdbc = JdbcTemplateFactory.getInstance();
 	
 		String sql = "SELECT * FROM USER WHERE EMAIL_ID = ?";
 				User user = jdbc.queryForObject(
