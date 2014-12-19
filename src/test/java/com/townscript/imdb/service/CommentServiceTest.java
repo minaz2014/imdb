@@ -42,7 +42,7 @@ public class CommentServiceTest {
 	}
 	
 	private void clear() {
-		jdbcTemplate.update("DELETE FROM MOVIE");
+		jdbcTemplate.update("DELETE FROM COMMENTS");
 	}
 	
 	@Test
