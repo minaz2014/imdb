@@ -39,8 +39,11 @@ function validateform()
 		{
 			if(xmlhttp.responseText==null || xmlhttp.responseText==""){
 				window.location.href="/imdb/homepage";
+			} else {
+				alert(xmlhttp.responseText);
+
 			}
-			alert(xmlhttp.responseText);
+				
 		}
 	};
 
