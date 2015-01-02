@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.townscript.imdb.model.Comment;
-import com.townscript.imdb.model.Movi;
 import com.townscript.imdb.service.comment.CommentService;
 import com.townscript.imdb.service.comment.CommentServiceImpl;
-import com.townscript.imdb.service.movie.MoviService;
-import com.townscript.imdb.service.movie.MoviServiceImpl;
+
 
 /**
  * Servlet implementation class CommentServlet
@@ -57,5 +55,6 @@ public class CommentServlet extends HttpServlet {
 		}
 
 	}
-
+	
+	
 }

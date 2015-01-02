@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import com.townscript.imdb.Utils;
 import com.townscript.imdb.dao.JdbcTemplateFactory;
 import com.townscript.imdb.model.Movi;
 import com.townscript.imdb.model.MoviRowMapper;
@@ -32,8 +33,8 @@ public class MoviDaoImpl implements MoviDao {
                 public PreparedStatement createPreparedStatement(Connection connection)
                         throws SQLException {
                     PreparedStatement ps = connection.prepareStatement("" +
-			"INSERT INTO MOVIE(MOVIE_NAME,DIRECTOR,CAST,CREATOR,DESCRIPTION,PHOTO) VALUES ('"+movi.getMoviname()+"','"+movi.getDirector()+
-					"','"+movi.getCast()+"','"+movi.getCreator()+"','"+movi.getDescription()+"','"+movi.getPhoto()+"');", Statement.RETURN_GENERATED_KEYS);
+			"INSERT INTO MOVIE(MOVIE_NAME,DIRECTOR,CAST,CREATOR,DESCRIPTION,PHOTO) VALUES ('"+Utils.escapeSplChar(movi.getMoviname())+"','"+Utils.escapeSplChar(movi.getDirector())+
+					"','"+Utils.escapeSplChar(movi.getCast())+"','"+Utils.escapeSplChar(movi.getCreator())+"','"+Utils.escapeSplChar(movi.getDescription())+"','"+movi.getPhoto()+"');", Statement.RETURN_GENERATED_KEYS);
                     return ps;
 				}
 			}, holder);

@@ -44,11 +44,11 @@ public class MovieServiceTest {
 	@Test
 	public void testAddMoviService(){
 		Movi movi = new Movi();
-		movi.setMoviname("Sholay");
-		movi.setDirector("Ramesh Sippy");
-		movi.setCast("Amitabh Bacchan, Dharmendra");
+		movi.setMoviname("Sholay's");
+		movi.setDirector("Ramesh Sippy's");
+		movi.setCast("Amitabh Bacchan, Dharmendra's");
 		movi.setCreator("komal");
-		movi.setDescription("Legendary!");
+		movi.setDescription("Legendary!'s");
 		movi.setPhoto("abc");
 		MoviService moviservice = new MoviServiceImpl();
 		int id = moviservice.addmovi(movi);

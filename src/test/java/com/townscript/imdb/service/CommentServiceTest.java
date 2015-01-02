@@ -79,8 +79,8 @@ public class CommentServiceTest {
 	@Test
 	public void testspecialchar(){
 		Comment comment = new Comment();
-        comment.setComment("good's");
-        comment.setCreator("Minaz's");
+        comment.setComment("good's vdvvfd'fwfw");
+        comment.setCreator("Minaz");
         comment.setMoviId(12);
         CommentService commentservice = new CommentServiceImpl();
 		int id = commentservice.addcomment(comment);

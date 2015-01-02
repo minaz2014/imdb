@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import com.townscript.imdb.Utils;
 import com.townscript.imdb.dao.JdbcTemplateFactory;
 import com.townscript.imdb.model.Comment;
 import com.townscript.imdb.model.CommentsRowMapper;
@@ -32,7 +33,7 @@ public class CommentDaoImpl implements CommentDao {
                 public PreparedStatement createPreparedStatement(Connection connection)
                         throws SQLException {
                     PreparedStatement ps = connection.prepareStatement("" +			
-			"INSERT INTO COMMENTS(COMMENT,CREATOR,MOVIE_ID) VALUES ('"+comment.getComment()+"','"+comment.getCreator()+
+			"INSERT INTO COMMENTS(COMMENT,CREATOR,MOVIE_ID) VALUES ('"+Utils.escapeSplChar(comment.getComment())+"','"+comment.getCreator()+
 					"','"+comment.getMoviId()+"');", Statement.RETURN_GENERATED_KEYS);
                return ps;
 		}
