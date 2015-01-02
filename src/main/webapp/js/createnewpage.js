@@ -151,8 +151,12 @@ function validateform()
 	    	{
 	        alert('not an image');
 	        return false;
-	    	};
+	    	}
 	    	
+	    	else
+	    		{
+	    		
+	    		
 	      var reader = new FileReader();
         
          reader.onload = function (e) {
@@ -161,8 +165,8 @@ function validateform()
                          };
          
          reader.readAsDataURL(file);
-
  return false;
+	    		}
  };
  
  
