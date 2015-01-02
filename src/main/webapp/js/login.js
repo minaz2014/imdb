@@ -1,7 +1,7 @@
 
 function validateform()
 {
-	var x = document.forms["login"]["emailid"].value;
+	var x = document.forms["login"]["emailid"].value.trim();
 	if (x==null || x=="")
 	{
 		alert("Email-id is mandatory");

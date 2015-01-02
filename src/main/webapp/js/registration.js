@@ -1,7 +1,7 @@
 
 function validateform()
 {
-	var x = document.forms["registration"]["username"].value;
+	var x = document.forms["registration"]["username"].value.trim();
 	if (x==null || x=="")
 		{
 		  alert("Username is mandatory");

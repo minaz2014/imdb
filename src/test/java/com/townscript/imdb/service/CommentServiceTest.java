@@ -75,7 +75,24 @@ public class CommentServiceTest {
 		List<Comment> comment= commentService.loadallcomment(14);
 		assertEquals(2, comment.size());
 		
-
+	}
+	@Test
+	public void testspecialchar(){
+		Comment comment = new Comment();
+        comment.setComment("good's");
+        comment.setCreator("Minaz's");
+        comment.setMoviId(12);
+        CommentService commentservice = new CommentServiceImpl();
+		int id = commentservice.addcomment(comment);
+		
+           String sql = "SELECT * FROM COMMENTS WHERE COMMENT_ID = ?";
+		
+		Comment loadComment = jdbcTemplate.queryForObject(
+				sql, new Object[] { id }, new CommentsRowMapper());
+		
+		assertEquals(comment.getComment(), loadComment.getComment());
+		assertEquals(comment.getCreator(), loadComment.getCreator());
+		assertEquals(comment.getMoviId(), loadComment.getMoviId());
 	}
 }
 

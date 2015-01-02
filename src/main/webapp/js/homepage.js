@@ -11,4 +11,6 @@ function onMoviclick(moviId)
 function newMovi()
 {
 	window.location.href="/imdb/createnewpage";
+	
 	}
+
